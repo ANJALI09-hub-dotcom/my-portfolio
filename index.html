@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anjali's Fit Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--ink:#0f1e3d;--mut:#5b6785;--pri:#ff4d2e;--pri2:#e23a1c;--soft:#fff1ec;--mint:#12b886;--mintsoft:#e6f9f2;--line:#e8ebf2}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+h1,h2,h3{font-family:'Bricolage Grotesque','DM Sans',sans-serif;line-height:1.1}
+nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:10px 16px;overflow-x:auto;white-space:nowrap}
+nav b{font-family:'Bricolage Grotesque',sans-serif;font-size:1.1rem;margin-right:auto;color:var(--pri)}
+nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.92rem;padding:6px 12px;border-radius:99px}
+nav a:hover{background:var(--soft)}
+.hero{padding:56px 20px 48px;max-width:980px;margin:auto;display:grid;gap:28px}
+.hero h1{font-size:clamp(2.4rem,8vw,4.6rem);font-weight:800;letter-spacing:-.03em}
+.hero p{max-width:52ch;color:var(--mut);font-size:1.1rem}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:12px;padding:12px 22px;font:700 1rem 'DM Sans',sans-serif;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:hover{background:var(--pri2)}
+.btn.alt{background:var(--ink)}
+.stats{display:flex;flex-wrap:wrap;gap:12px}
+.stats div{background:var(--soft);border-radius:16px;padding:14px 20px}
+.stats strong{font:800 1.6rem 'Bricolage Grotesque',sans-serif;display:block;color:var(--pri)}
+section{padding:52px 20px;max-width:980px;margin:auto}
+section:nth-of-type(even){background:linear-gradient(var(--soft),var(--soft));max-width:none}
+section>.in{max-width:980px;margin:auto}
+h2{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+.sub{color:var(--mut);margin-bottom:22px;max-width:60ch}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:18px}
+.tab{border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:99px;padding:7px 18px;font:600 .95rem 'DM Sans',sans-serif;cursor:pointer;white-space:nowrap}
+.tab[aria-selected=true]{background:var(--ink);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-left:5px solid var(--pri);border-radius:14px;padding:16px 18px}
+.card h3{font-size:1.12rem;margin-bottom:4px}
+.card .tag{display:inline-block;background:var(--mintsoft);color:#0b7a5a;font-weight:700;font-size:.85rem;border-radius:8px;padding:2px 10px;margin-bottom:8px}
+.card p{color:var(--mut);font-size:.95rem}
+.ch{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px}
+.ch h3{font-size:1.3rem}
+.ch p{color:var(--mut);margin:4px 0 12px}
+.days{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-bottom:12px}
+.day{aspect-ratio:1;border:2px solid var(--line);background:#fff;border-radius:10px;font:700 .8rem 'DM Sans',sans-serif;color:var(--mut);cursor:pointer}
+.day.on{background:var(--mint);border-color:var(--mint);color:#fff}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--pri);width:0;transition:width .3s}
+.cnt{font-weight:700;font-size:.9rem;margin-top:6px}
+.scan{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+input{flex:1;min-width:180px;border:2px solid var(--line);border-radius:12px;padding:12px 14px;font:500 1rem 'DM Sans',sans-serif}
+input:focus,.tab:focus-visible,.btn:focus-visible,.day:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+video{width:100%;max-height:280px;border-radius:14px;background:#000;display:none;margin-bottom:12px}
+.res{display:none;border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
+.res h3{font-size:1.4rem}
+.res .b{color:var(--mut);margin-bottom:10px}
+.nut{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:10px}
+.nut div{background:var(--soft);border-radius:12px;padding:10px 12px}
+.nut strong{display:block;font:800 1.3rem 'Bricolage Grotesque',sans-serif}
+.nut span{font-size:.85rem;color:var(--mut)}
+.msg{color:var(--mut);margin-top:8px}
+footer{padding:28px 20px;text-align:center;color:var(--mut);font-size:.9rem;border-top:1px solid var(--line)}
+@media(max-width:560px){.days{grid-template-columns:repeat(6,1fr)}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav><b>Anjali's Fit Studio</b><a href="#warmup">Warm-up</a><a href="#exercise">Exercises</a><a href="#stretch">Stretching</a><a href="#challenges">Challenges</a><a href="#scanner">Food scanner</a></nav>
+
+<header class="hero">
+  <h1>Move better. Eat smarter. Stay strong.</h1>
+  <p>Hi, I'm Anjali, a fitness student trained at FGIIT. Here you'll find simple warm-ups, exercises, stretches, challenges and a food scanner to help you build a healthy routine.</p>
+  <div class="btns"><a class="btn" href="#warmup">Start with a warm-up</a><a class="btn alt" href="#challenges">Join a challenge</a></div>
+  <div class="stats"><div><strong>4</strong>warm-up types</div><div><strong>6</strong>muscle groups</div><div><strong>4</strong>30-day challenges</div></div>
+</header>
+
+<section id="warmup"><div class="in">
+  <h2>Warm-up</h2>
+  <p class="sub">Spend 5 to 10 minutes warming up before every workout. It raises your heart rate and gets your joints ready.</p>
+  <div class="tabs" role="tablist" id="t-warm"></div><div class="grid" id="g-warm"></div>
+</div></section>
+
+<section id="exercise"><div class="in">
+  <h2>Exercises</h2>
+  <p class="sub">Pick a muscle group. Start light, keep good form, and rest 30 to 60 seconds between sets.</p>
+  <div class="tabs" role="tablist" id="t-ex"></div><div class="grid" id="g-ex"></div>
+</div></section>
+
+<section id="stretch"><div class="in">
+  <h2>Stretching</h2>
+  <p class="sub">Stretch after your workout when muscles are warm. Breathe slowly and never stretch into sharp pain.</p>
+  <div class="tabs" role="tablist" id="t-st"></div><div class="grid" id="g-st"></div>
+</div></section>
+
+<section id="challenges"><div class="in">
+  <h2>30-day challenges</h2>
+  <p class="sub">Tap a day when you finish it. Your progress is saved on this device.</p>
+  <div id="chs"></div>
+</div></section>
+
+<section id="scanner"><div class="in">
+  <h2>Food scanner</h2>
+  <p class="sub">Type the barcode number from a packet, or scan it with your camera. You'll see calories, protein, carbs and more per 100 g.</p>
+  <div class="scan">
+    <div class="row">
+      <input id="code" inputmode="numeric" placeholder="Barcode number, e.g. 3017620422003" aria-label="Barcode number">
+      <button class="btn" id="go">Check food</button>
+      <button class="btn alt" id="cam">Scan with camera</button>
+    </div>
+    <video id="vid" playsinline muted></video>
+    <p class="msg" id="msg">Data comes from Open Food Facts. Some Indian products may be missing.</p>
+    <div class="res" id="res"></div>
+  </div>
+</div></section>
+
+<footer>Made by Anjali. This site gives general fitness information, not medical advice. Check with a doctor or trainer if you have an injury or health condition.</footer>
+
+<script>
+const WARM={
+"Full body":[["Jumping jacks","30 sec","Land softly on the balls of your feet."],["High knees","30 sec","Drive knees up to hip height."],["Butt kicks","30 sec","Heels come up toward your glutes."],["Inchworm walk","6 reps","Walk hands out to a plank, then walk feet in."],["World's greatest stretch","5 per side","Lunge, twist and reach up slowly."]],
+"Upper body":[["Arm circles","20 each way","Start small, then make circles bigger."],["Shoulder rolls","15 reps","Roll back, then forward."],["Cat-cow","10 reps","Move with your breath."],["Band pull-aparts","15 reps","Use a light band or skip it."],["Wrist circles","10 each way","Good before push-ups."]],
+"Lower body":[["Bodyweight squats","15 reps","Chest up, knees in line with toes."],["Leg swings","10 per leg","Hold a wall for balance."],["Walking lunges","10 per leg","Take long, controlled steps."],["Glute bridges","15 reps","Squeeze at the top for 1 second."],["Ankle circles","10 each way","Wakes up your ankles."]],
+"Cardio":[["Light jog on the spot","1 min","Keep it easy."],["Skipping (no rope)","1 min","Stay light on your toes."],["Side shuffles","30 sec","Stay low with soft knees."],["Mountain climbers","30 sec","Keep hips low and steady."],["Butt kicks + high knees","1 min","Alternate every 10 seconds."]]};
+const EX={
+"Chest":[["Push-ups","3 x 10","Body in a straight line. Do them on knees to start."],["Incline push-ups","3 x 12","Hands on a bench. Easier on wrists."],["Dumbbell chest press","3 x 12","Lower slowly, press up fully."],["Chest fly","3 x 12","Slight bend in the elbows."]],
+"Back":[["Bent-over row","3 x 12","Flat back, pull elbows to hips."],["Superman hold","3 x 20 sec","Lift arms and legs together."],["Lat pulldown","3 x 12","Pull to upper chest, not behind neck."],["Reverse snow angels","3 x 10","Lie face down and sweep arms slowly."]],
+"Legs":[["Squats","3 x 15","Sit back like a chair."],["Lunges","3 x 10 per leg","Front knee stays over the ankle."],["Glute bridge","3 x 15","Push through your heels."],["Calf raises","3 x 20","Pause at the top."],["Wall sit","3 x 30 sec","Back flat on the wall."]],
+"Shoulders":[["Shoulder press","3 x 12","Do not arch your lower back."],["Lateral raises","3 x 12","Use light weights, lift to shoulder height."],["Front raises","3 x 10","Slow and controlled."],["Pike push-ups","3 x 8","Hips high, head toward the floor."]],
+"Arms":[["Bicep curls","3 x 12","Keep elbows by your sides."],["Triceps dips (chair)","3 x 10","Do not drop too low."],["Hammer curls","3 x 12","Palms face each other."],["Overhead triceps extension","3 x 12","Keep elbows close to your ears."]],
+"Core":[["Plank","3 x 30 sec","Squeeze abs and glutes."],["Bicycle crunches","3 x 20","Slow twists work better than fast ones."],["Dead bug","3 x 10 per side","Keep lower back pressed down."],["Leg raises","3 x 12","Lower slowly, do not swing."],["Side plank","3 x 20 sec per side","Hips lifted high."]]};
+const ST={
+"Neck":[["Side neck stretch","20 sec per side","Ear toward shoulder, relax the other shoulder."],["Chin tuck","10 reps","Slide your chin straight back."]],
+"Shoulders":[["Cross-body stretch","20 sec per arm","Pull arm gently across your chest."],["Doorway chest stretch","30 sec","Forearm on a door frame, lean forward."],["Child's pose","30 sec","Reach arms long and breathe."]],
+"Back":[["Cat-cow","10 slow reps","Round, then arch."],["Seated spinal twist","20 sec per side","Sit tall before twisting."],["Cobra stretch","20 sec","Keep hips on the floor."]],
+"Hips":[["Pigeon pose","30 sec per side","Go only as far as feels comfortable."],["Butterfly stretch","30 sec","Soles together, knees fall out."],["Low lunge","30 sec per side","Sink hips forward and down."]],
+"Legs":[["Standing quad stretch","20 sec per leg","Pull heel toward your glute."],["Seated hamstring stretch","30 sec","Reach toward toes, back straight."],["Calf stretch on wall","30 sec per leg","Heel stays on the floor."]]};
+const CH=[["Plank challenge","Start at 20 seconds and add 5 seconds every day. Rest on day 7, 14, 21 and 28 by holding the same time."],["Squat challenge","Start with 20 squats. Add 5 every few days up to 100. Keep good form."],["Push-up challenge","Start with 5 push-ups (on knees is fine). Add 1 or 2 every few days."],["Water and steps challenge","Drink 2.5 to 3 litres of water and walk 8,000 steps every day."]];
+const $=s=>document.querySelector(s);
+function tabs(id,gid,data){const t=$('#'+id),g=$('#'+gid),keys=Object.keys(data);
+  function show(k){[...t.children].forEach(b=>b.setAttribute('aria-selected',b.textContent===k));
+    g.innerHTML=data[k].map(x=>`<div class="card"><span class="tag">${x[1]}</span><h3>${x[0]}</h3><p>${x[2]}</p></div>`).join('')}
+  keys.forEach(k=>{const b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.textContent=k;b.onclick=()=>show(k);t.appendChild(b)});show(keys[0])}
+tabs('t-warm','g-warm',WARM);tabs('t-ex','g-ex',EX);tabs('t-st','g-st',ST);
+function load(k){try{return JSON.parse(localStorage.getItem(k))||[]}catch(e){return[]}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+CH.forEach((c,i)=>{const key='anjali_ch_'+i,done=load(key),el=document.createElement('div');el.className='ch';
+  el.innerHTML=`<h3>${c[0]}</h3><p>${c[1]}</p><div class="days"></div><div class="bar"><i></i></div><div class="cnt"></div>`;
+  const days=el.querySelector('.days'),bar=el.querySelector('i'),cnt=el.querySelector('.cnt');
+  function upd(){bar.style.width=(done.length/30*100)+'%';cnt.textContent=done.length+' of 30 days done'+(done.length===30?'. Amazing work!':'')}
+  for(let d=1;d<=30;d++){const b=document.createElement('button');b.className='day'+(done.includes(d)?' on':'');b.textContent=d;b.setAttribute('aria-label','Day '+d);
+    b.onclick=()=>{const p=done.indexOf(d);p>-1?done.splice(p,1):done.push(d);b.classList.toggle('on');save(key,done);upd()};days.appendChild(b)}
+  upd();$('#chs').appendChild(el)});
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function lookup(code){const msg=$('#msg'),res=$('#res');code=(code||'').replace(/\D/g,'');
+  if(code.length<6){msg.textContent='Please enter a valid barcode number (digits only).';return}
+  msg.textContent='Looking up...';res.style.display='none';
+  try{const r=await fetch('https://world.openfoodfacts.org/api/v2/product/'+code+'.json?fields=product_name,brands,quantity,nutriscore_grade,nutriments');
+    const j=await r.json();if(j.status!==1||!j.product){msg.textContent='Product not found. Check the number or try another packet.';return}
+    const p=j.product,n=p.nutriments||{},f=(v,u)=>v==null?'N/A':(Math.round(v*10)/10)+(u||'');
+    const grade=p.nutriscore_grade&&p.nutriscore_grade!=='unknown'?`<p class="b">Nutri-Score: <b>${esc(p.nutriscore_grade).toUpperCase()}</b> (A is best, E is lowest)</p>`:'';
+    res.innerHTML=`<h3>${esc(p.product_name||'Unnamed product')}</h3><p class="b">${esc(p.brands||'')} ${esc(p.quantity||'')}</p>${grade}<div class="nut">
+      <div><strong>${f(n['energy-kcal_100g'])}</strong><span>kcal</span></div><div><strong>${f(n.proteins_100g,' g')}</strong><span>protein</span></div>
+      <div><strong>${f(n.carbohydrates_100g,' g')}</strong><span>carbs</span></div><div><strong>${f(n.sugars_100g,' g')}</strong><span>sugar</span></div>
+      <div><strong>${f(n.fat_100g,' g')}</strong><span>fat</span></div><div><strong>${f(n.fiber_100g,' g')}</strong><span>fibre</span></div></div>
+      <p class="msg">Values are per 100 g. Check the packet for exact numbers.</p>`;
+    res.style.display='block';msg.textContent=''}catch(e){msg.textContent='Could not connect. Check your internet and try again.'}}
+$('#go').onclick=()=>lookup($('#code').value);
+$('#code').addEventListener('keydown',e=>{if(e.key==='Enter')lookup(e.target.value)});
+let stream=null,scanning=false;
+function stop(){scanning=false;if(stream)stream.getTracks().forEach(t=>t.stop());stream=null;$('#vid').style.display='none'}
+$('#cam').onclick=async()=>{const msg=$('#msg'),v=$('#vid');
+  if(scanning){stop();return}
+  if(!('BarcodeDetector' in window)||!navigator.mediaDevices){msg.textContent='Camera scanning is not supported in this browser. Use Chrome on Android, or type the barcode number.';return}
+  try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});v.srcObject=stream;v.style.display='block';await v.play();
+    msg.textContent='Point the camera at the barcode.';scanning=true;const det=new BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e']});
+    (async function loop(){while(scanning){try{const b=await det.detect(v);if(b.length){const c=b[0].rawValue;stop();$('#code').value=c;lookup(c);return}}catch(e){}await new Promise(r=>setTimeout(r,300))}})()
+  }catch(e){msg.textContent='Camera permission was blocked. Allow camera access, or type the barcode number.'}};
+</script>
+</body>
+</html>
